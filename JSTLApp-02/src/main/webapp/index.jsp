@@ -8,13 +8,13 @@
 <title>JSP PAGES</title>
 </head>
 <body>
-	<sql:setDataSource url="jdbc:mysql:///octbatch" user="root"
+	<sql:setDataSource url="jdbc:mysql:///emplyee" user="root"
 		password="root123" driver="com.mysql.cj.jdbc.Driver" var="dataSource" />
 
 	<sql:query var="result" dataSource="${dataSource}">
 			SELECT * from employee
 	</sql:query>
-<h1 style='color:green; text-align: center'>EMPLOYEE DATA OF INEURON</h1>
+<h1 style='color:green; text-align: center'>EMPLOYEE DATA OF THE COMPANY</h1>
 	<table border='1' align="center">
 		<tr>
 			<th>EID</th>
@@ -33,7 +33,7 @@
 	</table>
 
 	<sql:update dataSource="${dataSource}" var="count">
-		insert into employee(`ename`,`eaddr`,`esal`) values ('hyder','RCB',21000)
+		insert into employee(`ename`,`eaddr`,`esal`) values ('ABC','RCB',21000)
 	</sql:update>
 	<h1 style='color: red; text-align: center;'>The no of rows updated
 		are :: ${count}</h1>
@@ -41,7 +41,7 @@
 
 	<sql:update dataSource="${dataSource}" var="count">
 		insert into employee(`ename`,`eaddr`,`esal`) values (?,?,?)
-		<sql:param value='nitin' />
+		<sql:param value='DEF' />
 		<sql:param value='RCB' />
 		<sql:param value='10000' />
 	</sql:update>
@@ -50,11 +50,11 @@
 
 	<sql:transaction dataSource="${dataSource}">
 		<sql:update>
-				update employee set esal = esal + 10000 where ename='hyder'
+				update employee set esal = esal + 10000 where ename='ABC'
 		</sql:update>
 		
 		<sql:update>
-				update employee set esal = esal + 5000 where ename='nitin'
+				update employee set esal = esal + 5000 where ename='DEF'
 		</sql:update>
 	</sql:transaction>
 	
